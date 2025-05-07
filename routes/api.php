@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    User\UserController,
+};
 
 
 Route::prefix('v1')->group(function () {
@@ -13,4 +15,14 @@ Route::prefix('v1')->group(function () {
             'version' => config('app.version'),
         ];
     });
+
+
+        // Auth routes
+
+            Route::prefix('users')->group(function () {
+            Route::controller(UserController::class)->group(function () {
+            Route::get('/profile','show');
+            });
+        });
+
 });
