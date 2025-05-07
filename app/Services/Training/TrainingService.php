@@ -27,7 +27,7 @@ class TrainingService
         {
             $query->where("level", $data["level"]);
         }
-        return $query->paginate(10 ?? $data["per_page"]);
+        return $query->paginate(10 ?? $data["perPage"]);
     }
 
 

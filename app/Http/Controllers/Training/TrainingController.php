@@ -40,9 +40,9 @@ class TrainingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TrainingStoreRequest $user)
+    public function show(Training $training): JsonResponse
     {
-
+        return $this->ok( TrainingResource::make($training));
     }
 
     /**
