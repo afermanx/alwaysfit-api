@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     User\UserController,
     Training\TrainingController,
-    NutritionPlan\NutritionPlanController
+    NutritionPlan\NutritionPlanController,
+    ProgressLog\ProgressLogController,
 };
 use App\Http\Controllers\Auth\AuthController;
 
@@ -35,8 +36,11 @@ Route::prefix('v1')->group(function () {
         });
         Route::apiResource('trainings', TrainingController::class)
          ->only(['index','store','update','destroy']);
-    Route::apiResource('nutrition-plans', NutritionPlanController::class)
+         Route::post('/trainings/{training}/complete', [ProgressLogController::class, 'store']);
+        Route::apiResource('nutrition-plans', NutritionPlanController::class)
          ->only(['index','store', 'update','destroy']);
+         Route::apiResource(name: 'progress', controller: ProgressLogController::class)
+         ->only(methods: ['index']);
 
 
 
