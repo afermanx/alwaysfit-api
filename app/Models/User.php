@@ -49,4 +49,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    /**
+     * Get all of the trainings for the User
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Training, User>
+     */
+    public function trainings()
+    {
+        return $this->hasMany(Training::class);
+    }
 }
