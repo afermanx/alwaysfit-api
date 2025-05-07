@@ -5,8 +5,9 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -53,8 +54,17 @@ class User extends Authenticatable
      * Get all of the trainings for the User
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<Training, User>
      */
-    public function trainings()
+    public function trainings(): HasMany
     {
         return $this->hasMany(Training::class);
+    }
+
+    /**
+     * Get all of the nutritionPlans for the User
+     * @return HasMany<NutritionPlan, User>
+     */
+    public function nutritionPlans()
+    {
+        return $this->hasMany(NutritionPlan::class);
     }
 }
