@@ -1,61 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 💪 AlwaysFit API - Laravel 12 + Sanctum + Docker
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este projeto é uma API RESTful desenvolvida com **Laravel 12**, utilizando **Laravel Sanctum** para autenticação e **Laravel Sail** com Docker para ambiente de desenvolvimento. A API é voltada para controle de **usuários**, **treinos**, **planos nutricionais** e **progresso físico**.
 
-## About Laravel
+## 🚀 Funcionalidades
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 🧑‍💼 usuários
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+| Método | Rota                    | Ação                   |
+| ------ | ----------------------- | ---------------------- |
+| POST   | `/api/v1/users`         | Registrar novo usuário |
+| GET    | `/api/v1/users/profile` | Ver perfil do usuário  |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🏋️‍♀️ treinos
 
-## Learning Laravel
+| Método    | Rota                                    | Ação                         |
+| --------- | --------------------------------------- | ---------------------------- |
+| GET       | `/api/v1/trainings`                     | Listar treinos               |
+| POST      | `/api/v1/trainings`                     | Criar novo treino            |
+| PUT/PATCH | `/api/v1/trainings/{training}`          | Atualizar treino             |
+| DELETE    | `/api/v1/trainings/{training}`          | Deletar treino               |
+| POST      | `/api/v1/trainings/{training}/complete` | Marcar treino como concluído |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🍽️ Planos nutricionais
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+| Método    | Rota                                       | Ação             |
+| --------- | ------------------------------------------ | ---------------- |
+| GET       | `/api/v1/nutrition-plans`                  | Listar planos    |
+| POST      | `/api/v1/nutrition-plans`                  | Criar novo plano |
+| PUT/PATCH | `/api/v1/nutrition-plans/{nutrition_plan}` | Atualizar plano  |
+| DELETE    | `/api/v1/nutrition-plans/{nutrition_plan}` | Deletar plano    |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 📈 Progresso
 
-## Laravel Sponsors
+| Método | Rota               | Ação                      |
+| ------ | ------------------ | ------------------------- |
+| GET    | `/api/v1/progress` | Listar treinos concluídos |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🔐 Autenticação
 
-### Premium Partners
+| Método | Rota                   | Ação              |
+| ------ | ---------------------- | ----------------- |
+| POST   | `/api/v1/auth/sign-in` | Login do usuário  |
+| POST   | `/api/v1/auth/logout`  | Logout do usuário |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+A autenticação é feita com **Laravel Sanctum**, protegendo as rotas privadas com middleware de autenticação.
 
-## Contributing
+## 🗂️ Estrutura do Banco de Dados
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Utiliza **migrations** e **seeders** para criar as seguintes tabelas:
 
-## Code of Conduct
+-   `users`
+-   `trainings`
+-   `nutrition_plans`
+-   `progress_logs`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## ✅ Validações e Regras
 
-## Security Vulnerabilities
+-   Todas as requisições passam por validações com mensagens claras.
+-   Relacionamentos corretamente definidos entre os modelos (ex: `User hasMany Trainings`).
+-   Responses e utilizando Resources consistentes com status HTTP apropriados.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🧪 Testes
 
-## License
+```bash
+sail pest
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🐳 Docker com Laravel Sail
+
+Este projeto está pronto para rodar com Laravel Sail. Basta ter Docker instalado.
+
+```bash
+# Clonar o repositório
+git clone https://github.com/seu-usuario/fitness-api.git
+cd fitness-api
+
+# Instalar dependências
+./vendor/bin/sail up -d
+```
+
+## 📬 Collection do Postman
+
+Para facilitar os testes, incluímos uma collection do Postman com todos os endpoints documentados.
+
+-   🔗 [Download da Collection](./docs/alwaysfit-api.postman_collection.json)
+
+### Como usar:
+
+1. Baixe o arquivo acima.
+2. Abra o Postman.
+3. Vá em **"Import"** e selecione o arquivo `.json`.
+4. Pronto! Todos os endpoints estarão disponíveis para testar.
