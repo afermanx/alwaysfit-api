@@ -15,6 +15,7 @@
             return User::factory()->create([
                 'name' => 'Test User',
                 'email' => 'test@mail.com',
+                'cpf' => '000.000.000-00',
                 'password' => bcrypt('password'),
             ]);
         }
