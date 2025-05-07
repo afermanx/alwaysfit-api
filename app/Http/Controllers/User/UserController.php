@@ -38,11 +38,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user): JsonResponse
+    public function show(): JsonResponse
     {
-       if(!$user->trashed()) {
-            return $this->notFoundRequestException('Usuário não encontrado');
-        }
+        $user = auth()->user();
+
         return  $this->ok(UserResource::make($user)) ?? $this->badRequestException('Usuário não encontrado');
     }
 
