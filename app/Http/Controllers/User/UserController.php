@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function store(UserCreateRequest $request): JsonResponse
     {
-        return $this->ok(UserResource::make($this->userService->create(data: $request->validated())));
+        return $this->ok(UserResource::make($this->userService->create($request->validated())));
     }
 
     /**

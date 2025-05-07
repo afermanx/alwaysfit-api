@@ -3,7 +3,9 @@
 namespace App\Services\User;
 
 use App\Models\User;
+use App\User\UserStatus;
 use App\Traits\ApiException;
+
 
 class UserService
 {
@@ -11,6 +13,9 @@ class UserService
 
     public function create (array $data): User
     {
-        return User::create($data);
+        return User::create([
+            ...$data,
+            'status' => UserStatus::ACTIVE
+        ]);
     }
 }
