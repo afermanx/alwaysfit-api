@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\ProgressLog;
+use App\Models\NutritionPlan;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -63,8 +65,13 @@ class User extends Authenticatable
      * Get all of the nutritionPlans for the User
      * @return HasMany<NutritionPlan, User>
      */
-    public function nutritionPlans()
+    public function nutritionPlans(): HasMany
     {
         return $this->hasMany(NutritionPlan::class);
+    }
+
+     public function progressLogs(): HasMany
+    {
+        return $this->hasMany(ProgressLog::class);
     }
 }
