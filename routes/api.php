@@ -3,6 +3,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+
+Route::prefix('v1')->group(function () {
+   // Rota de boas-vindas
+    Route::get('/', function () {
+        return [
+            'message' => 'Welcome!',
+            'name' => config('app.name'),
+            'version' => config('app.version'),
+        ];
+    });
+});
