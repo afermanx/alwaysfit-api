@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     User\UserController,
+    Training\TrainingController,
 };
 use App\Http\Controllers\Auth\AuthController;
 
@@ -31,5 +32,17 @@ Route::prefix('v1')->group(function () {
             Route::post('/','store');
             });
         });
+
+        Route::prefix('trainings')->group(function () {
+            Route::controller(TrainingController::class)->group(function () {
+                Route::get('/','index');
+                Route::post('/','store');
+                Route::patch(uri: '/{training}',action: 'update');
+                Route::delete(uri:'/{training}',action:'destroy');
+            });
+        });
+
+
+
     });
 });

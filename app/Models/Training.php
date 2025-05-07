@@ -11,6 +11,7 @@ class Training extends Model
 
     use HasFactory, SoftDeletes;
     protected $fillable = [
+        'user_id',
         'name',
         'description',
         'level',
