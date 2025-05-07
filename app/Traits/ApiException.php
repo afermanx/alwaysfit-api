@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Exceptions\alwaysFitException;
+use App\Exceptions\AlwaysFitException;
 
 trait ApiException
 {
@@ -11,7 +11,7 @@ trait ApiException
      */
     public function badRequestException(array|string $exception): void
     {
-        throw new alwaysFitException($exception, 400);
+        throw new AlwaysFitException($exception, 400);
     }
 
     /**
@@ -19,7 +19,7 @@ trait ApiException
      */
     public function unauthorizedRequestException(array|string $exception): void
     {
-        throw new alwaysFitException($exception, 401);
+        throw new AlwaysFitException($exception, 401);
     }
 
     /**
@@ -27,7 +27,7 @@ trait ApiException
      */
     public function preConditionFailedException(array|string $exception): void
     {
-        throw new alwaysFitException($exception, 412);
+        throw new AlwaysFitException($exception, 412);
     }
 
     /**
@@ -35,6 +35,6 @@ trait ApiException
      */
     public function notFoundRequestException(array|string $exception): void
     {
-        throw new alwaysFitException($exception, 404);
+        throw new AlwaysFitException($exception, 404);
     }
 }
